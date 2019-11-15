@@ -1,0 +1,181 @@
+CS217
+Object Oriented Programming
+M. Fox
+25
+EAX
+13
+CS218
+Data Structures and Algorithms
+M. Fox
+25
+EAX
+13
+CS303
+Junior Software Engineering Lab
+M. Fox
+9
+EAX
+13
+CS0023
+Course 23
+Somebody 23
+23
+Bldg 23
+23
+CS0024
+Course 24
+Somebody 24
+24
+Bldg 24
+24
+CS0011
+Course 11
+Somebody 11
+11
+Bldg 11
+11
+CS0012
+Course 12
+Somebody 12
+12
+Bldg 12
+12
+CS0025
+Course 25
+Somebody 25
+25
+Bldg 25
+25
+CS001
+Course 1
+Somebody 1
+1
+Bldg 1
+1
+CS002
+Course 2
+Somebody 2
+2
+Bldg 2
+2
+CS003
+Course 3
+Somebody 3
+3
+Bldg 3
+3
+CS004
+Course 4
+Somebody 4
+4
+Bldg 4
+4
+CS005
+Course 5
+Somebody 5
+5
+Bldg 5
+5
+CS006
+Course 6
+Somebody 6
+6
+Bldg 6
+6
+CS007
+Course 7
+Somebody 7
+7
+Bldg 7
+7
+CS004
+Course 4A
+Somebody 4A
+14
+Bldg 4A
+40
+CS008
+Course 8
+Somebody 8
+8
+Bldg 8
+8
+CS009
+Course 9
+Somebody 9
+9
+Bldg 9
+9
+CS0010
+Course 10
+Somebody 10
+10
+Bldg 10
+10
+CS0013
+Course 13
+Somebody 13
+13
+Bldg 13
+13
+CS0014
+Course 14
+Somebody 14
+14
+Bldg 14
+14
+CS0015
+Course 15
+Somebody 15
+15
+Bldg 15
+15
+CS0016
+Course 16
+Somebody 16
+16
+Bldg 16
+16
+CS0017
+Course 17
+Somebody 17
+17
+Bldg 17
+17
+CS0018
+Course 18
+Somebody 18
+18
+Bldg 18
+18
+CS0019
+Course 19
+Somebody 19
+19
+Bldg 19
+19
+CS0020
+Course 20
+Somebody 20
+20
+Bldg 20
+20
+CS0021
+Course 21
+Somebody 21
+21
+Bldg 21
+21
+CS0022
+Course 22
+Somebody 22
+22
+Bldg 22
+22
+CS0014
+Course 14B
+Somebody 14B
+24
+Bldg 14B
+140
+
