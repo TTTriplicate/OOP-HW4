@@ -9,11 +9,9 @@ CourseMap::~CourseMap() {
 }
 
 void CourseMap::loadCourses(std::string path) {
-	//open file
-	//read six lines and generate course
-	//call addCourse
-	//error if loaded/stream errors
-	//loaded = true;
+	if (loaded) {
+		throw std::runtime_error("Error: Courses already loaded.  Exiting operation.");
+	}
 }
 
 void CourseMap::addCourse(Course course) {
@@ -26,7 +24,7 @@ std::shared_ptr<Course> CourseMap::getCourse(std::string title) {
 	auto index = std::hash<std::string>{}(title);
 	
 	if (!loaded) {
-		throw std::runtime_error("Course Map has not been loaded.  Exiting operation.");
+		throw std::runtime_error("Error: Courses have not been loaded.  Exiting operation.");
 	}
 	else {	
 		cursor = courses.begin() + courses.size() / 2;
@@ -46,6 +44,9 @@ std::shared_ptr<Course> CourseMap::getCourse(std::string title) {
 }
 
 void CourseMap::deleteCourse(std::string title) {
+	if (!loaded) {
+		throw std::runtime_error("Error: Courses have not been loaded.  Exiting operation.");
+	}
 	auto search = std::hash<std::string>{}(title);
 	for (cursor = courses.begin(); cursor < courses.end(); ++cursor) {
 		if (search == std::hash<std::string>{}(cursor->getInfo(0))) {
