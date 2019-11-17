@@ -7,8 +7,8 @@
 class CourseMap
 {
 	private:
-		std::vector<Course> courses;
-		std::vector<Course>::iterator cursor;
+		std::vector<std::shared_ptr<Course>> courses;
+		std::vector<std::shared_ptr<Course>>::iterator cursor;
 		void addCourse(Course);
 		bool loaded = false;
 	public:
