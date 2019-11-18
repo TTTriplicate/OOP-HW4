@@ -23,12 +23,16 @@ int main()
 			else if (input[0] == 'G') {
 				std::cout << "What course do you need information about:" << std::endl;
 				getline(std::cin, input);
-				map.getCourse(input);
+				std::shared_ptr<Course> gotten = map.getCourse(input);
+				for (int i = 0; i < 6; ++i) {
+					std::cout << gotten->getInfo(i) << std::endl;
+				}
 			}
 			else if (input[0] == 'D') {
 				std::cout << "Which course would you like to remove:" << std::endl;
 				getline(std::cin, input);
 				map.deleteCourse(input);
+				std::cout << input << " removed from the course list." << std::endl;
 			}
 			else {
 				throw std::invalid_argument("Error: " + input + " is not a valid command.  Please enter L, G, D, or X");
@@ -39,6 +43,9 @@ int main()
 		}
 		catch (std::runtime_error & r) {
 			std::cerr << r.what() << std::endl;
+		}
+		catch (std::fstream::failure & e) {
+			std::cerr << e.what() << std::endl;
 		}
 	}
 
