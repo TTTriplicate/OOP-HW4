@@ -12,13 +12,15 @@ class CourseMap
 	private:
 		std::vector<std::shared_ptr<Course>> courses;//sorted descending
 		std::vector<std::shared_ptr<Course>>::iterator cursor;
-		void addCourse(std::shared_ptr<Course>);
 		bool loaded = false;
 	public:
 		CourseMap();
 		~CourseMap();
 		void loadCourses(std::string);
+		void addCourse(std::shared_ptr<Course>);
 		void deleteCourse(std::string);
+		void setLoadstate();
 		std::shared_ptr<Course> getCourse(std::string);
+
 };
 

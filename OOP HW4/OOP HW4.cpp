@@ -9,8 +9,8 @@ int main()
 	while (true) {
 		std::cout << "Choose an option: (L)oad courses, (G)et information on a course, (D)elete a course, or E(X)it:" << std::endl;
 		getline(std::cin, input);
-		try {
-			input[0] = toupper(input[0]);
+		input[0] = toupper(input[0]);
+		try{
 			if (input.length() > 1) {
 				throw std::invalid_argument("Error: input too long.  Please enter L, G, D, or X");
 			}
@@ -18,8 +18,35 @@ int main()
 				break;
 			}
 			else if (input[0] == 'L') {
-				map.loadCourses(path);
+				std::fstream intake;
+				std::string read[6];
+				try {
+					intake.open(path);
+					if (intake) {
+						while (!intake.eof()) {
+							for (int i = 0; i < 6; ++i) {
+								getline(intake, read[i]);
+							}
+							std::shared_ptr<Course> toAdd = std::shared_ptr<Course>(new Course(read));
+							try {
+								map.addCourse(toAdd);
+							}
+							catch (std::runtime_error & e) {
+								std::cerr << e.what() << std::endl;
+							}
+						}
+					}
+					intake.close();
+					map.setLoadstate();
+					//map.loadCourses("word");
+				}
+				catch(std::fstream::failure & f){
+					std::cerr << f.what() << std::endl;
+					intake.close();
+				}
+				
 			}
+			
 			else if (input[0] == 'G') {
 				std::cout << "What course do you need information about:" << std::endl;
 				getline(std::cin, input);
@@ -28,12 +55,14 @@ int main()
 					std::cout << gotten->getInfo(i) << std::endl;
 				}
 			}
+
 			else if (input[0] == 'D') {
 				std::cout << "Which course would you like to remove:" << std::endl;
 				getline(std::cin, input);
 				map.deleteCourse(input);
 				std::cout << input << " removed from the course list." << std::endl;
 			}
+
 			else {
 				throw std::invalid_argument("Error: " + input + " is not a valid command.  Please enter L, G, D, or X");
 			}
@@ -43,9 +72,6 @@ int main()
 		}
 		catch (std::runtime_error & r) {
 			std::cerr << r.what() << std::endl;
-		}
-		catch (std::fstream::failure & e) {
-			std::cerr << e.what() << std::endl;
 		}
 	}
 

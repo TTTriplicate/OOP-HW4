@@ -12,30 +12,13 @@ void CourseMap::loadCourses(std::string path) {
 	if (loaded) {
 		throw std::runtime_error("Error: Courses already loaded.  Exiting operation.");
 	}
-	else {
-		std::fstream intake;
-		std::string read[6];
-		
-		intake.open(path);
-		if (intake) {
-			while (!intake.eof()) {
-				for (int i = 0; i < 6; ++i) {
-					getline(intake, read[i]);
-				}
-				std::shared_ptr<Course> toAdd = std::shared_ptr<Course>(new Course(read));
-				try {
-					addCourse(toAdd);
-				}
-				catch (std::runtime_error & e) {
-					std::cerr << e.what() << std::endl;
-				}
-			}
-		}
-		intake.close();
-	}
 	for (cursor = courses.begin(); cursor != courses.end(); ++cursor) {
-		std::cout << (*cursor)->getHash() << std::endl;
+		std::cout << (*cursor)->getInfo(0) << " " << (*cursor)->getHash() << std::endl;
 	}
+	loaded = true;
+}
+
+void CourseMap::setLoadstate() {
 	loaded = true;
 }
 
@@ -45,7 +28,6 @@ void CourseMap::addCourse(std::shared_ptr<Course> course) {
 		courses.push_back(course);
 	}
 	else {
-
 		for (cursor = courses.begin(); cursor != courses.end(); ++cursor) {
 			if (index == (*cursor)->getHash()) {
 				throw std::runtime_error(course->getInfo(0) + " already in list.");
@@ -58,11 +40,7 @@ void CourseMap::addCourse(std::shared_ptr<Course> course) {
 				courses.push_back(course);
 				break;
 			}
-
-
 		}
-
-
 	}
 }
 
@@ -73,7 +51,7 @@ std::shared_ptr<Course> CourseMap::getCourse(std::string title) {//make it binar
 	if (!loaded) {
 		throw std::runtime_error("Error: Courses have not been loaded.  Exiting operation.");
 	}
-	else {	
+	else {
 		//size_t low = 0;
 		//size_t high = courses.size();
 		//while (low < high){
@@ -89,15 +67,15 @@ std::shared_ptr<Course> CourseMap::getCourse(std::string title) {//make it binar
 		//	}
 		//}
 
-		
-		cursor = courses.begin();
-		while (index <= (*cursor)->getHash()) {
-			if (index == (*cursor)->getHash()) {	
+		for (cursor = courses.begin(); cursor != courses.end(); ++cursor) {
+			auto current = (*cursor)->getHash();
+			if (index == current) {
 				return *cursor;
 			}
-			++cursor;
+			else if (index > current) {
+				throw std::runtime_error("Course not found.");
+			}
 		}
-		throw std::invalid_argument("Error: Course not found");
 	}
 }
 
