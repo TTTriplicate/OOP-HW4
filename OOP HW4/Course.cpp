@@ -24,3 +24,7 @@ std::string Course::getInfo(int index) {
 		throw std::invalid_argument("Error: index out of range in Course data.");
 	}
 }
+
+bool Course::operator<(Course& c) {
+	return hashVal < c.getHash();
+}

@@ -14,5 +14,6 @@ class Course
 		~Course();
 		std::string getInfo(int);
 		std::size_t getHash();
+		bool operator < (Course& c);
 };
 

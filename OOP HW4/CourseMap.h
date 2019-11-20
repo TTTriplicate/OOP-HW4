@@ -1,6 +1,5 @@
 #pragma once
 #include "Course.h"
-#include <list>
 #include <vector>
 #include <string>
 #include <memory>
@@ -20,6 +19,7 @@ class CourseMap
 		void addCourse(std::shared_ptr<Course>);
 		void deleteCourse(std::string);
 		void setLoadstate();
+		bool isLoaded();
 		std::shared_ptr<Course> getCourse(std::string);
 
 };

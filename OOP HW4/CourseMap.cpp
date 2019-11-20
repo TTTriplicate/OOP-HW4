@@ -18,6 +18,10 @@ void CourseMap::loadCourses(std::string path) {
 	loaded = true;
 }
 
+bool CourseMap::isLoaded() {
+	return loaded;
+}
+
 void CourseMap::setLoadstate() {
 	loaded = true;
 }

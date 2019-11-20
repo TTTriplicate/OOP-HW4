@@ -1,5 +1,4 @@
 #include "CourseMap.h"
-#include <iostream>
 
 int main()
 {
@@ -18,6 +17,9 @@ int main()
 				break;
 			}
 			else if (input[0] == 'L') {
+				if (map.isLoaded()) {
+					throw std::runtime_error("Error: Courses already loaded.  Exiting operation.");
+				}
 				std::fstream intake;
 				std::string read[6];
 				try {
@@ -37,14 +39,13 @@ int main()
 						}
 					}
 					intake.close();
-					map.setLoadstate();
-					//map.loadCourses("word");
+					//map.setLoadstate();
+					map.loadCourses("word");
 				}
 				catch(std::fstream::failure & f){
 					std::cerr << f.what() << std::endl;
 					intake.close();
 				}
-				
 			}
 			
 			else if (input[0] == 'G') {
@@ -74,7 +75,5 @@ int main()
 			std::cerr << r.what() << std::endl;
 		}
 	}
-
 	return 0;
 }
-
