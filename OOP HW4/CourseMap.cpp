@@ -33,12 +33,9 @@ void CourseMap::addCourse(std::shared_ptr<Course> course) {
 	}
 	else {
 		for (cursor = courses.begin(); cursor != courses.end(); ++cursor) {
+			//std::cout << course < &cursor;
 			if (index == (*cursor)->getHash()) {
 				throw std::runtime_error(course->getInfo(0) + " already in list.");
-			}
-			else if (index > (*cursor)->getHash()) {
-				courses.insert(cursor, course);
-				break;
 			}
 			if (cursor == courses.end()-1) {
 				courses.push_back(course);
@@ -46,6 +43,10 @@ void CourseMap::addCourse(std::shared_ptr<Course> course) {
 			}
 		}
 	}
+}
+
+void CourseMap::sortCourses() {
+	std::sort(courses.begin(), courses.end(), Course::compare);
 }
 
 

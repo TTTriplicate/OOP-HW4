@@ -12,7 +12,7 @@ Course::Course(std::string info[]) {
 
 Course::~Course() { std::cout << "deleting " + data[0] << std::endl; }
 
-std::size_t Course::getHash() {
+const std::size_t Course::getHash() const {
 	return hashVal;
 }
 
@@ -25,6 +25,6 @@ std::string Course::getInfo(int index) {
 	}
 }
 
-bool Course::operator<(Course& c) {
-	return hashVal < c.getHash();
+bool Course::compare(std::shared_ptr<Course> l, std::shared_ptr<Course> r) {
+	return l->hashVal < r->hashVal;
 }

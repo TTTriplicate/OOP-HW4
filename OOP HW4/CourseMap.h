@@ -21,6 +21,6 @@ class CourseMap
 		void setLoadstate();
 		bool isLoaded();
 		std::shared_ptr<Course> getCourse(std::string);
-
+		void sortCourses();
 };
 

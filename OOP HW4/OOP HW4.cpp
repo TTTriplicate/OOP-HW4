@@ -40,6 +40,7 @@ int main()
 					}
 					intake.close();
 					//map.setLoadstate();
+					map.sortCourses();
 					map.loadCourses("word");
 				}
 				catch(std::fstream::failure & f){
