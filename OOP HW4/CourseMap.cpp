@@ -45,8 +45,8 @@ void CourseMap::addCourse(std::shared_ptr<Course> course) {
 	}
 }
 
-void CourseMap::sortCourses() {
-	std::sort(courses.begin(), courses.end(), Course::compare);
+void CourseMap::sortCourses() {									//sorts by hashVal in approx. O(nlog(n))
+	std::sort(courses.begin(), courses.end(), Course::compare);	//vs O(n^2) for previous insertion sort during add
 }
 
 

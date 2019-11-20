@@ -25,6 +25,6 @@ std::string Course::getInfo(int index) {
 	}
 }
 
-bool Course::compare(std::shared_ptr<Course> l, std::shared_ptr<Course> r) {
+bool Course::compare(std::shared_ptr<Course> l, std::shared_ptr<Course> r) {//for sorting with built-in std::sort
 	return l->hashVal < r->hashVal;
 }
