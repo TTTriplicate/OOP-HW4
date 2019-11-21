@@ -49,6 +49,9 @@ int main()
 			}
 			
 			else if (input[0] == 'G') {
+				if (!map.isLoaded()) {
+					throw std::runtime_error("Error: Courses have not been loaded.  Exiting operation.");
+				}
 				std::cout << "What course do you need information about:" << std::endl;
 				getline(std::cin, input);
 				std::shared_ptr<Course> gotten = map.getCourse(input);
@@ -58,6 +61,9 @@ int main()
 			}
 
 			else if (input[0] == 'D') {
+				if (!map.isLoaded()) {
+					throw std::runtime_error("Error: Courses have not been loaded.  Exiting operation.");
+				}
 				std::cout << "Which course would you like to remove:" << std::endl;
 				getline(std::cin, input);
 				map.deleteCourse(input);

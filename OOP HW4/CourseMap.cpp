@@ -36,39 +36,22 @@ void CourseMap::sortCourses() {									//sorts by hashVal in approx. O(nlog(n))
 
 std::shared_ptr<Course> CourseMap::getCourse(std::string title) {//make it binary search
 	auto key = std::hash<std::string>{}(title);
-	
-	if (!loaded) {
-		throw std::runtime_error("Error: Courses have not been loaded.  Exiting operation.");
-	}
-	else {
-		size_t low = 0;
-		size_t high = courses.size();
+		auto low = 0;
+		auto high = courses.size();
 		while (low < high) {
-			auto index = courses.at((low + high) / 2)->getHash();
+			auto index = courses.at(((low + high) / 2))->getHash();
 			if (key == index) {
-				return courses.at((high + low)/2);
+				cursor = courses.begin() + ((low + high) / 2);
+				return *cursor;
 			}
 			else if (key < index) {
-				high = (low + high) / 2;
+				high = ((low + high) / 2);
 			}
 			else if (key > index) {
-				low = (low + high) / 2;
+				low = ((low + high) / 2)+1;
 			}
 		}
 		throw std::invalid_argument("Course not found.");
-	}
-
-
-	//	for (cursor = courses.begin(); cursor != courses.end(); ++cursor) {//iterative search
-	//		auto current = (*cursor)->getHash();							//O(n) minus a little
-	//		if (index == current) {
-	//			return *cursor;
-	//		}
-	//		else if (index < current) {
-	//			throw std::runtime_error("Course not found.");
-	//		}
-	//	}
-	//}
 }
 
 void CourseMap::deleteCourse(std::string title) {
