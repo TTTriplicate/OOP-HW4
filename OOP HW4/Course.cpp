@@ -12,7 +12,7 @@ Course::Course(std::string info[]) {
 
 Course::~Course() { std::cout << "deleting " + data[0] << std::endl; }
 
-const std::size_t Course::getHash() const {
+unsigned Course::getHash() {
 	return hashVal;
 }
 
@@ -26,5 +26,5 @@ std::string Course::getInfo(int index) {
 }
 
 bool Course::compare(std::shared_ptr<Course> l, std::shared_ptr<Course> r) {//for sorting with built-in std::sort
-	return l->hashVal < r->hashVal;
-}
+	return l->hashVal < r->hashVal;											//can't just overload operator< due to
+}																			//use of shared_ptrs

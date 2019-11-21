@@ -39,9 +39,8 @@ int main()
 						}
 					}
 					intake.close();
-					//map.setLoadstate();
 					map.sortCourses();
-					map.loadCourses("word");
+					map.setLoadstate();
 				}
 				catch(std::fstream::failure & f){
 					std::cerr << f.what() << std::endl;
