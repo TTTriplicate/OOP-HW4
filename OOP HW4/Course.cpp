@@ -12,7 +12,7 @@ Course::Course(std::string info[]) {
 
 Course::~Course() { std::cout << "deleting " + data[0] << std::endl; }
 
-unsigned Course::getHash() {
+std::size_t Course::getHash() {
 	return hashVal;
 }
 

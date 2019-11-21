@@ -8,14 +8,14 @@ class Course
 {
 	private:
 		std::string data[6];
-		unsigned hashVal;
+		std::size_t hashVal;
 	public:
 		Course();
 		Course(std::string[]);
 		~Course();
 		std::string getInfo(int);
-		//unsigned getHash();
-		unsigned getHash();
+		//std::size_t getHash();
+		std::size_t getHash();
 		static bool compare(std::shared_ptr<Course>, std::shared_ptr<Course>);
 };
 

@@ -35,7 +35,7 @@ void CourseMap::sortCourses() {									//sorts by hashVal in approx. O(nlog(n))
 
 
 std::shared_ptr<Course> CourseMap::getCourse(std::string title) {//make it binary search
-	auto index = std::hash<std::string>{}(title);
+	auto key = std::hash<std::string>{}(title);
 	
 	if (!loaded) {
 		throw std::runtime_error("Error: Courses have not been loaded.  Exiting operation.");
@@ -44,18 +44,20 @@ std::shared_ptr<Course> CourseMap::getCourse(std::string title) {//make it binar
 		size_t low = 0;
 		size_t high = courses.size();
 		while (low < high) {
-			auto toCheck = courses.at(low + high / 2)->getHash();
-			if (toCheck == index) {
-				return courses.at(high / low);
+			auto index = courses.at((low + high) / 2)->getHash();
+			if (key == index) {
+				return courses.at((high + low)/2);
 			}
-			else if (toCheck > index) {
-				high = low + high / 2;
+			else if (key < index) {
+				high = (low + high) / 2;
 			}
-			else if (toCheck < index) {
-				low = low + high / 2;
+			else if (key > index) {
+				low = (low + high) / 2;
 			}
 		}
+		throw std::invalid_argument("Course not found.");
 	}
+
 
 	//	for (cursor = courses.begin(); cursor != courses.end(); ++cursor) {//iterative search
 	//		auto current = (*cursor)->getHash();							//O(n) minus a little
