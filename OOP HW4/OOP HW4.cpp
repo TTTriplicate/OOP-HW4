@@ -13,28 +13,27 @@ int main()
 			if (input.length() > 1) {
 				throw std::invalid_argument("Error: input too long.  Please enter L, G, D, or X");
 			}
-			else if (input[0] == 'X') {
-				break;
-			}
 			else if (input[0] == 'L') {
 				if (map.isLoaded()) {
 					throw std::runtime_error("Error: Courses already loaded.  Exiting operation.");
 				}
 				std::fstream intake;
-				std::string read[6];
 				try {
 					intake.open(path);
 					if (intake) {
 						while (!intake.eof()) {
+							std::string read[6];
 							for (int i = 0; i < 6; ++i) {
 								getline(intake, read[i]);
 							}
-							std::shared_ptr<Course> toAdd = std::shared_ptr<Course>(new Course(read));
-							try {
-								map.addCourse(toAdd);
-							}
-							catch (std::runtime_error & e) {
-								std::cerr << e.what() << std::endl;
+							if (read[0] != "") {
+								std::shared_ptr<Course> toAdd = std::shared_ptr<Course>(new Course(read));
+								try {
+									map.addCourse(toAdd);
+								}
+								catch (std::runtime_error & e) {
+									std::cerr << e.what() << std::endl;
+								}
 							}
 						}
 					}
@@ -68,6 +67,10 @@ int main()
 				getline(std::cin, input);
 				map.deleteCourse(input);
 				std::cout << input << " removed from the course list." << std::endl;
+			}
+
+			else if (input[0] == 'X') {
+				break;
 			}
 
 			else {

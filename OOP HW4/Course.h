@@ -15,6 +15,6 @@ class Course
 		~Course();
 		std::string getInfo(int);
 		std::size_t getHash();
-		static bool compare(std::shared_ptr<Course>, std::shared_ptr<Course>);
+		static bool compare(std::shared_ptr<Course>, std::shared_ptr<Course>);//allows use of std::sort
 };
 

@@ -13,9 +13,6 @@ bool CourseMap::isLoaded() {
 }
 
 void CourseMap::setLoadstate() {
-	for (cursor = courses.begin(); cursor != courses.end(); ++cursor) {
-		std::cout << (*cursor)->getInfo(0) << " " << (*cursor)->getHash() << std::endl;
-	}
 	loaded = true;
 }
 
@@ -34,14 +31,14 @@ void CourseMap::sortCourses() {									//sorts by hashVal in approx. O(nlog(n))
 }
 
 
-std::shared_ptr<Course> CourseMap::getCourse(std::string title) {//make it binary search
+std::shared_ptr<Course> CourseMap::getCourse(std::string title) {
 	auto key = std::hash<std::string>{}(title);
 		auto low = 0;
 		auto high = courses.size();
 		while (low < high) {
 			auto index = courses.at(((low + high) / 2))->getHash();
 			if (key == index) {
-				cursor = courses.begin() + ((low + high) / 2);
+				cursor = courses.begin() + ((low + high) / 2);	//setting cursor allows deletion to use binary search
 				return *cursor;
 			}
 			else if (key < index) {
