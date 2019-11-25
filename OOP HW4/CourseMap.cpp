@@ -17,6 +17,7 @@ void CourseMap::setLoadstate() {
 }
 
 void CourseMap::addCourse(std::shared_ptr<Course> course) {
+	course->isGood();//throws a runtime error if it failed to construct; object will delete as it leaves scope during next course construction or when all construction ends
 	auto index = course->getHash();
 	for (cursor = courses.begin(); cursor != courses.end(); ++cursor) {//check for duplicates, prevent adding it to vector
 		if (index == (*cursor)->getHash()) {
@@ -45,7 +46,7 @@ std::shared_ptr<Course> CourseMap::getCourse(std::string title) {
 				high = ((low + high) / 2);
 			}
 			else if (key > index) {
-				low = ((low + high) / 2)+1;
+				low = ((low + high) / 2) + 1;
 			}
 		}
 		throw std::invalid_argument("Course not found.");

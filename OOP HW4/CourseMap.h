@@ -1,7 +1,6 @@
 #pragma once
 #include "Course.h"
 #include <vector>
-#include <fstream>
 
 class CourseMap
 {

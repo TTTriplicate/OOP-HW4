@@ -1,4 +1,5 @@
 #include "CourseMap.h"
+#include <fstream>
 
 int main()
 {
@@ -26,16 +27,17 @@ int main()
 							for (int i = 0; i < 6; ++i) {
 								getline(intake, read[i]);
 							}
-							if (read[0] != "") {
-								std::shared_ptr<Course> toAdd = std::shared_ptr<Course>(new Course(read));
-								try {
-									map.addCourse(toAdd);
-								}
-								catch (std::runtime_error & e) {
-									std::cerr << e.what() << std::endl;
-								}
+							std::shared_ptr<Course> toAdd = std::shared_ptr<Course>(new Course(read));
+							try {
+								map.addCourse(toAdd);
+							}
+							catch (std::runtime_error & e) {//prints course already loaded message and keeps going
+								std::cerr << e.what() << std::endl;
 							}
 						}
+					}
+					else {
+						throw std::runtime_error("Error: File not found at " + path);
 					}
 					intake.close();
 					map.sortCourses();
