@@ -12,10 +12,12 @@ class CourseMap
 		CourseMap();
 		~CourseMap();
 		void addCourse(std::shared_ptr<Course>);
+		void courseCount();
 		void deleteCourse(std::string);
 		void setLoadstate();
 		bool isLoaded();
 		std::shared_ptr<Course> getCourse(std::string);
 		void sortCourses();
+		
 };
 

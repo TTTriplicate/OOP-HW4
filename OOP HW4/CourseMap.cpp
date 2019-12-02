@@ -27,6 +27,10 @@ void CourseMap::addCourse(std::shared_ptr<Course> course) {
 	courses.push_back(course);
 }
 
+void CourseMap::courseCount() {
+	std::cout << courses.size() << " Courses loaded into Map." << std::endl;
+}
+
 void CourseMap::sortCourses() {									//sorts by hashVal in approx. O(nlog(n))
 	std::sort(courses.begin(), courses.end(), Course::compare);	//vs O(n^2) for previous insertion sort during add
 }

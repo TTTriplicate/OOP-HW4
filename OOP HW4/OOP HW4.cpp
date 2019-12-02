@@ -27,6 +27,9 @@ int main()
 							for (int i = 0; i < 6; ++i) {
 								getline(intake, read[i]);
 							}
+							if (read[0] == "") {//block attempt to add empty Course
+								break;
+							}
 							std::shared_ptr<Course> toAdd = std::shared_ptr<Course>(new Course(read));
 							try {
 								map.addCourse(toAdd);
@@ -42,6 +45,7 @@ int main()
 					intake.close();
 					map.sortCourses();
 					map.setLoadstate();
+					map.courseCount();
 				}
 				catch(std::fstream::failure & f){//in case something goes wrong more generally with the file stream
 					std::cerr << f.what() << std::endl;
