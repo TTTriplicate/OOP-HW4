@@ -43,7 +43,7 @@ int main()
 					map.sortCourses();
 					map.setLoadstate();
 				}
-				catch(std::fstream::failure & f){
+				catch(std::fstream::failure & f){//in case something goes wrong more generally with the file stream
 					std::cerr << f.what() << std::endl;
 					intake.close();
 				}
@@ -78,8 +78,8 @@ int main()
 			else {
 				throw std::invalid_argument("Error: " + input + " is not a valid command.  Please enter L, G, D, or X");
 			}
-		}
-		catch (std::invalid_argument & i) {
+		}									//catch the generic not loaded, bad argument, etc exceptions 
+		catch (std::invalid_argument & i) {	//that are built into the course and map objects, and main
 			std::cerr << i.what() << std::endl;
 		}
 		catch (std::runtime_error & r) {
